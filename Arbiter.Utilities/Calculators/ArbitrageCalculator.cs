@@ -1,5 +1,6 @@
 ﻿using Arbiter.Core.Enums;
 using Arbiter.Core.Models;
+using Arbiter.Utilities.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Arbiter.Utilities.Calculators
                         var hedgeOdds = hedge.OutcomeOdds[hedgeOutcome];
                         var cost = 1.0m / originalOdds
                             + 1.0m / hedgeOdds;
-                        if (cost >= 1 || cost <= .8m)
+                        if (cost >= 1)
                             continue;
 
                         var opportunity = new ArbitrageOpportunity()
@@ -66,11 +67,28 @@ namespace Arbiter.Utilities.Calculators
                         if (originalBet.OutcomeOdds.Keys.Contains(OutcomeId.Tie)
                             || hedge.OutcomeOdds.Keys.Contains(OutcomeId.Tie))
                         {
-                            //todo handle a tie
-                            continue;
-                        }
+                            foreach(var tieHedge in game.Odds.Where(o => o.Site != originalBet.Site && o.Site != hedge.Site))
+                            {
+                                if (!tieHedge.OutcomeOdds.TryGetValue(OutcomeId.Tie, out var tieOdds))
+                                    continue;
 
-                        yield return opportunity;
+                                var totalCost = cost + 1.0m / tieOdds;
+                                if (totalCost >= 1)
+                                    continue;
+
+                                var clone = opportunity.DeepClone();
+                                clone.Bets.Add(new ArbitrageBet()
+                                {
+                                    Site = tieHedge.Site,
+                                    LastUpdated = tieHedge.LastUpdate,
+                                    Outcome = OutcomeId.Tie,
+                                    OutcomeOdds = tieOdds
+                                });
+                                yield return clone;
+                            }
+                        }
+                        else 
+                            yield return opportunity;
                     }
                 }
             }

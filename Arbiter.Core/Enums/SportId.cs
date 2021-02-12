@@ -5,8 +5,10 @@
         NBA = 1,
         NCAAM = 2,
         EuroLeagueBasketball = 3,
-        EnglishPermierLeague = 4,
+        EnglishPremierLeague = 4,
         Ligue1 = 5,
-        LaLiga = 6
+        LaLiga = 6,
+        AussieFootball = 7,
+        NHL = 8
     }
 }
