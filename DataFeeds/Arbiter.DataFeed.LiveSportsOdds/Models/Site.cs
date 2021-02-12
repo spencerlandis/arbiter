@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace Arbiter.DataFeed.LiveSportsOdds.Models
+namespace Arbiter.LiveSportsOdds.Models
 {
     public class Site
     {

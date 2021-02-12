@@ -1,9 +1,9 @@
-﻿using Arbiter.DataFeed.Shared.Interfaces;
-using Arbiter.DataFeed.Shared.Models;
+﻿using Arbiter.Core.Interfaces;
+using Arbiter.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Arbiter.DataFeed.LiveSportsOdds.Converters
+namespace Arbiter.LiveSportsOdds.Converters
 {
     public class ResponseConverter : IConverter<IEnumerable<Game>, Models.GetOddsResponse>
     {

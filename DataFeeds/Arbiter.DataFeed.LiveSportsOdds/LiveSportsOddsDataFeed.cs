@@ -1,6 +1,6 @@
-﻿using Arbiter.DataFeed.Shared.Enums;
-using Arbiter.DataFeed.Shared.Interfaces;
-using Arbiter.DataFeed.Shared.Models;
+﻿using Arbiter.Core.Enums;
+using Arbiter.Core.Interfaces;
+using Arbiter.Core.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Arbiter.DataFeed.LiveSportsOdds
+namespace Arbiter.LiveSportsOdds
 {
     public class LiveSportsOddsDataFeed : IDataFeed
     {

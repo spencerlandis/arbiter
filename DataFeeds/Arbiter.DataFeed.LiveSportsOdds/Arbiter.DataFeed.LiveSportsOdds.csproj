@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Arbiter.DataFeed.Shared\Arbiter.DataFeed.Shared.csproj" />
+    <ProjectReference Include="..\..\Arbiter.Core\Arbiter.Core.csproj" />
   </ItemGroup>
 
 </Project>

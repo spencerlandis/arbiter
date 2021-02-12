@@ -1,11 +1,11 @@
-﻿using Arbiter.DataFeed.Shared.Enums;
-using Arbiter.DataFeed.Shared.Models;
+﻿using Arbiter.Core.Enums;
+using Arbiter.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Arbiter.DataFeed.Shared.Interfaces
+namespace Arbiter.Core.Interfaces
 {
     public interface IDataFeed
     {

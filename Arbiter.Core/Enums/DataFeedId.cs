@@ -1,4 +1,4 @@
-﻿namespace Arbiter.DataFeed.Shared.Enums
+﻿namespace Arbiter.Core.Enums
 {
     public enum DataFeedId
     {

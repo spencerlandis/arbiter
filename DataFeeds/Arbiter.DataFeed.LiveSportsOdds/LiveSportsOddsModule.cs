@@ -1,13 +1,13 @@
-﻿using Arbiter.DataFeed.LiveSportsOdds.Converters;
-using Arbiter.DataFeed.Shared.Enums;
-using Arbiter.DataFeed.Shared.Interfaces;
-using Arbiter.DataFeed.Shared.Models;
+﻿using Arbiter.LiveSportsOdds.Converters;
+using Arbiter.Core.Enums;
+using Arbiter.Core.Interfaces;
+using Arbiter.Core.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 
-namespace Arbiter.DataFeed.LiveSportsOdds
+namespace Arbiter.LiveSportsOdds
 {
     public static class LiveSportsOddsModule
     {

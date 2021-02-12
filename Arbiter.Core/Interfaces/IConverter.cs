@@ -1,4 +1,4 @@
-﻿namespace Arbiter.DataFeed.Shared.Interfaces
+﻿namespace Arbiter.Core.Interfaces
 {
     public interface IConverter<A, B>
     {

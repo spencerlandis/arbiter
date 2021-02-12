@@ -1,4 +1,4 @@
-using Arbiter.DataFeed.LiveSportsOdds;
+using Arbiter.LiveSportsOdds;
 using Arbiter.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
