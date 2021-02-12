@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataFeeds\Arbiter.DataFeed.LiveSportsOdds\Arbiter.DataFeed.LiveSportsOdds.csproj" />
+    <ProjectReference Include="..\Arbiter.Utilities\Arbiter.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

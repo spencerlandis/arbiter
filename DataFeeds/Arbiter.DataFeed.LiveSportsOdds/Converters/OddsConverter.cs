@@ -16,6 +16,7 @@ namespace Arbiter.DataFeed.LiveSportsOdds.Converters
             return input.Sites.Select(s => new Odds()
             {
                 Site = s.SiteNice,
+                LastUpdate = s.LastUpdate,
                 HomeOdds = s.Odds.H2H[homeIndex],
                 AwayOdds = s.Odds.H2H[awayIndex],
                 TieOdds = s.Odds.H2H.Length > 2 ? s.Odds.H2H[2] : null

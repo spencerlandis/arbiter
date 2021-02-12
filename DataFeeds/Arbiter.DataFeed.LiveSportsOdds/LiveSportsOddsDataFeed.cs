@@ -2,6 +2,7 @@
 using Arbiter.DataFeed.Shared.Interfaces;
 using Arbiter.DataFeed.Shared.Models;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
@@ -37,6 +38,8 @@ namespace Arbiter.DataFeed.LiveSportsOdds
         };
 
         public DataFeedId DataFeedId => DataFeedId.LiveSportsOdds;
+
+        public TimeSpan Throttle => TimeSpan.FromHours(4);
 
         public async Task<IEnumerable<Game>> GetOdds(SportId sport, CancellationToken cancellation = default)
         {
