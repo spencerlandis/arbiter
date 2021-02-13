@@ -14,6 +14,7 @@ namespace Arbiter.Utilities.Managers
     public interface IDataFeedManager
     {
         Task<IEnumerable<Game>> GetOddsFromDataFeed(SportId sportId, DataFeedId dataFeedId, CancellationToken cancellationToken);
+        IEnumerable<SportId> GetDataFeedSports(DataFeedId dataFeedId);
     }
 
     public class DataFeedManager: IDataFeedManager
@@ -39,17 +40,29 @@ namespace Arbiter.Utilities.Managers
             var result = await _cache.GetAsync<IEnumerable<Game>>(key, cancellation);
             if (result == null)
             {
-                if (!_dataFeeds.TryGetValue(dataFeedId, out var dataFeed))
-                {
-                    _logger.LogError("Data feed id {DataFeedId} is invalid or not available", dataFeedId);
-                    throw new ArgumentException($"Data feed id {dataFeedId} is invalid or not available");
-                }
+                var dataFeed = GetDataFeed(dataFeedId);
                 result = await dataFeed.GetOdds(sportId, cancellation);
 
                 await _cache.SetAsync(key, result, dataFeed.Throttle, cancellation);
             }
 
             return result;
+        }
+
+        public IEnumerable<SportId> GetDataFeedSports(DataFeedId dataFeedId)
+        {
+            var dataFeed = GetDataFeed(dataFeedId);
+            return dataFeed.SupportedSports;
+        }
+
+        private IDataFeed GetDataFeed(DataFeedId dataFeedId)
+        {
+            if (!_dataFeeds.TryGetValue(dataFeedId, out var dataFeed))
+            {
+                _logger.LogError("Data feed id {DataFeedId} is invalid or not available", dataFeedId);
+                throw new ArgumentException($"Data feed id {dataFeedId} is invalid or not available");
+            }
+            return dataFeed;
         }
 
         private static string GetFeedKey(SportId sportId, DataFeedId dataFeedId)

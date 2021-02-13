@@ -1,12 +1,10 @@
-﻿using Arbiter.Core.Enums;
-using Arbiter.Core.Models;
-using Arbiter.Utilities.Calculators;
-using Arbiter.Utilities.Managers;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Arbiter.Core.Enums;
+using Arbiter.Core.Models;
+using Arbiter.Utilities.Managers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Arbiter.Controllers
 {
@@ -15,25 +13,32 @@ namespace Arbiter.Controllers
     public class OddsController : ControllerBase
     {
         private readonly IDataFeedManager _feedManager;
-        private readonly IArbitrageCalculator _arbitrageCalculator;
 
-        public OddsController(IDataFeedManager feedManager, IArbitrageCalculator arbitrageCalculator)
+        public OddsController(IDataFeedManager feedManager)
         {
             _feedManager = feedManager;
-            _arbitrageCalculator = arbitrageCalculator;
         }
 
-        [HttpGet("{sportId}/{dataFeedId}")]
-        public async Task<ActionResult<IEnumerable<Game>>> GetOddsFromDataFeed(SportId sportId, DataFeedId dataFeedId, CancellationToken cancellation)
+        [HttpGet("feed/{dataFeedId}/sport/{sportId}")]
+        public async Task<ActionResult<IEnumerable<Game>>> GetOddsFromDataFeed(
+            DataFeedId dataFeedId,
+            SportId sportId,
+            CancellationToken cancellation)
         {
             return Ok(await _feedManager.GetOddsFromDataFeed(sportId, dataFeedId, cancellation));
         }
 
-        [HttpGet("arbitrage/{sportId}/{dataFeedId}")]
-        public async Task<ActionResult<IEnumerable<Game>>> CalculateArbitrageFromFeed(SportId sportId, DataFeedId dataFeedId, CancellationToken cancellation)
+        [HttpGet("feeds")]
+        public ActionResult<IEnumerable<Option>> GetDataFeeds()
         {
-            var games = await _feedManager.GetOddsFromDataFeed(sportId, dataFeedId, cancellation);
-            return Ok(_arbitrageCalculator.CalculateArbitrageOpportunities(games).ToList());
+            return Ok(Option.GetFromEnum<DataFeedId>());
+        }
+
+        [HttpGet("feed/{dataFeedId}/sports")]
+        public ActionResult<IEnumerable<Option>> GetDataFeedSports(DataFeedId dataFeedId)
+        {
+            var sports = _feedManager.GetDataFeedSports(dataFeedId);
+            return Ok(Option.GetFromEnum(sports));
         }
     }
 }

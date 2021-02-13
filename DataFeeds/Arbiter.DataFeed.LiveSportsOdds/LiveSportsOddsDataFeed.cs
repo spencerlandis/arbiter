@@ -34,7 +34,13 @@ namespace Arbiter.LiveSportsOdds
 
         public IEnumerable<SportId> SupportedSports => new[] {
             SportId.NBA, 
-            SportId.NCAAM
+            SportId.NCAAM,
+            SportId.EuroLeagueBasketball,
+            SportId.AussieFootball,
+            SportId.EnglishPremierLeague,
+            SportId.LaLiga,
+            SportId.Ligue1,
+            SportId.NHL
         };
 
         public DataFeedId DataFeedId => DataFeedId.LiveSportsOdds;

@@ -28,4 +28,9 @@
     <ProjectReference Include="..\Arbiter.Utilities\Arbiter.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClientApp\ts\" />
+    <Folder Include="ClientApp\ts\services\" />
+    <Folder Include="ClientApp\ts\services\models\" />
+  </ItemGroup>
 </Project>
