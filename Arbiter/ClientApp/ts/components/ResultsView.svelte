@@ -39,7 +39,7 @@
     {:else if !validOptions}
         <span>Select a feed and sport to get started.</span>
     {:else if opportunities.length === 0}
-        <span>No opportunities available on {selectedFeed.label} for {selectedSport.value}</span>
+        <span>No opportunities available on {selectedFeed.label} for {selectedSport.label}</span>
     {:else}
     <ul>
         {#each opportunities as opportunity}
@@ -47,8 +47,10 @@
         {/each}
     </ul>
     {/if}
-
 </div>
 
 <style type="text/scss">
+    .results {
+        padding: 1em;
+    }
 </style>
