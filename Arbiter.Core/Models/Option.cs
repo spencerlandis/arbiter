@@ -6,7 +6,7 @@ namespace Arbiter.Core.Models
 {
     public class Option
     {
-        public string Name { get; set; }
+        public string Label { get; set; }
         public int Value { get; set; }
 
         public static IEnumerable<Option> GetFromEnum<T>() where T : struct, IConvertible
@@ -18,7 +18,7 @@ namespace Arbiter.Core.Models
 
             return Enum.GetValues(typeof(T)).Cast<IConvertible>().Select(x => new Option()
             {
-                Name = x.ToString(),
+                Label = x.ToString(),
                 Value = (int)x
             });
         }
@@ -31,8 +31,8 @@ namespace Arbiter.Core.Models
             }
 
             return options.Cast<IConvertible>().Select(x => new Option()
-            {
-                Name = x.ToString(),
+            {       
+                Label = x.ToString(),
                 Value = (int)x
             });
         }

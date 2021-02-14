@@ -23,7 +23,7 @@ namespace Arbiter.Controllers
             _arbitrageCalculator = arbitrageCalculator;
         }
 
-        [HttpGet("arbitrage/{sportId}/{dataFeedId}")]
+        [HttpGet("feed/{dataFeedId}/sport/{sportId}")]
         public async Task<ActionResult<IEnumerable<Game>>> CalculateArbitrageFromFeed(SportId sportId, DataFeedId dataFeedId, CancellationToken cancellation)
         {
             var games = await _feedManager.GetOddsFromDataFeed(sportId, dataFeedId, cancellation);

@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\ts\" />
-    <Folder Include="ClientApp\ts\services\" />
-    <Folder Include="ClientApp\ts\services\models\" />
+    <Folder Include="ClientApp\ts\data\" />
+    <Folder Include="ClientApp\ts\data\models\" />
   </ItemGroup>
 </Project>
