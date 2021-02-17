@@ -58,10 +58,7 @@
 		.filter-select {
 			min-width: 300px;
 			flex: 1 0 auto;
-			
-			&:not(:first-child){
-				margin-left: 1em;
-			}
+			margin-left: 1em;
 		}
 	}
 </style>

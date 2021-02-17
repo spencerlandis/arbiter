@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type {Opportunity, OutcomeId, Bet} from '../data/models/Opportunity';
+	import type {Opportunity} from '../data/models/Opportunity';
 	import {feedId, sportId} from '../data/Store';
 	import Icon from 'svelte-awesome';
 	import { refresh } from 'svelte-awesome/icons';
     import type { Option } from '../data/models/Option';
     import { GetOpportunities } from '../data/Arbitrage';
+    import OpportunityView from './OpportunityView.svelte'
 
     let loading = false;
     let validOptions = false;
@@ -41,16 +42,16 @@
     {:else if opportunities.length === 0}
         <span>No opportunities available on {selectedFeed.label} for {selectedSport.label}</span>
     {:else}
-    <ul>
         {#each opportunities as opportunity}
-            <li>{opportunity.awayTeam} @ {opportunity.homeTeam}</li>
+            <OpportunityView opportunity={opportunity} />
         {/each}
-    </ul>
     {/if}
 </div>
 
 <style type="text/scss">
     .results {
         padding: 1em;
+        display: flex;
+        flex-wrap: wrap;
     }
 </style>
